@@ -1,0 +1,50 @@
+{
+  "models": [
+    {
+      "name": "EfficientNet-B0",
+      "filename": "efficientnet_b0_qualcomm_official.onnx",
+      "source": "Qualcomm Official",
+      "priority": 1
+    },
+    {
+      "name": "EfficientNet-B4",
+      "filename": "efficientnet_b4_qualcomm_official.onnx",
+      "source": "Qualcomm Official",
+      "priority": 2
+    },
+    {
+      "name": "QNN-Safe-CNN",
+      "filename": "qnn_safe_cnn_custom.onnx",
+      "source": "Custom Safe",
+      "priority": 4
+    },
+    {
+      "name": "MobileNet-V2-Verified",
+      "filename": "mobilenet_v2_verified_custom.onnx",
+      "source": "Custom Safe",
+      "priority": 5
+    }
+  ],
+  "upload_commands": [
+    {
+      "model": "EfficientNet-B0",
+      "upload": "qai-hub upload-model --model efficientnet_b0_qualcomm_official.onnx --name \"EfficientNetB0-Fashion\"",
+      "profile": "qai-hub submit-profile-job --model MODEL_ID --device \"Snapdragon X Elite CRD\" --name \"EfficientNetB0-Profile\" --wait"
+    },
+    {
+      "model": "EfficientNet-B4",
+      "upload": "qai-hub upload-model --model efficientnet_b4_qualcomm_official.onnx --name \"EfficientNetB4-Fashion\"",
+      "profile": "qai-hub submit-profile-job --model MODEL_ID --device \"Snapdragon X Elite CRD\" --name \"EfficientNetB4-Profile\" --wait"
+    },
+    {
+      "model": "QNN-Safe-CNN",
+      "upload": "qai-hub upload-model --model qnn_safe_cnn_custom.onnx --name \"QNNSafeCNN-Fashion\"",
+      "profile": "qai-hub submit-profile-job --model MODEL_ID --device \"Snapdragon X Elite CRD\" --name \"QNNSafeCNN-Profile\" --wait"
+    },
+    {
+      "model": "MobileNet-V2-Verified",
+      "upload": "qai-hub upload-model --model mobilenet_v2_verified_custom.onnx --name \"MobileNetV2Verified-Fashion\"",
+      "profile": "qai-hub submit-profile-job --model MODEL_ID --device \"Snapdragon X Elite CRD\" --name \"MobileNetV2Verified-Profile\" --wait"
+    }
+  ]
+}
