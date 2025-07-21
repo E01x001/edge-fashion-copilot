@@ -1,106 +1,207 @@
 # Edge Fashion Copilot .gitignore
 
 # 가상환경
+qualcomm_env/
 ai_hub_env/
 venv/
 env/
-qualcomm_env/  # 현재 사용 중인 환경
+.venv/
+*.venv
 
-# 모델 파일 (용량이 큰 ONNX 파일)
+# 대용량 모델 파일들
 *.onnx
-models/*.onnx
 *.pt
 *.pth
 *.h5
 *.pb
+*.tflite
+*.dlc
+*_optimized*
+*_quantized*
+*_compiled*
+models/*_qual*
+models/job_*
+models/target_*
+
+# 코드와 설정 파일은 포함
+!models/*.py
+!models/*.json
+!models/*.txt
+!models/*.md
+!models/README*
 
 # Python 캐시
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
-*.egg-info/
-dist/
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
 # 환경 변수
 .env
 .env.local
-
-# API 키/토큰 (실수로 커밋 방지)
-*token*
-*key*
-*secret*
-config.json  # API 설정 파일
+.env.development
+.env.test
+.env.production
 
 # IDE 설정
 .vscode/
+*.code-workspace
 .idea/
+*.iws
+*.iml
+*.ipr
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
+*~
 
-# OS 생성 파일
-.DS_Store
-Thumbs.db
+# API 키와 보안 파일
+*token*
+*key*
+*secret*
+*password*
+*credential*
+config.json
+.env.*
+api_config.py
+secrets.py
 
-# 임시 파일
-*.tmp
-*.log
-
-# PyQt5 관련
-*.ui.py
-
-# 테스트 이미지
-test_images/
-sample_data/
-
-# === 추가 권장 사항 ===
-
-# 사용자 데이터 (앱에서 생성되는 데이터)
+# 사용자 데이터
 user_data/
 wardrobe_data/
 uploaded_images/
+user_uploads/
+personal_data/
 *.db
 *.sqlite
 *.sqlite3
+user_profiles/
 
-# 실행 파일
+# GUI 자동생성 파일
+*.ui.py
+*.qrc.py
+ui_*.py
+*_ui.py
+
+# 로그와 임시 파일
+logs/
+*.log
+*.tmp
+*.temp
+cache/
+*.cache
+temp/
+tmp/
+
+# 테스트 데이터
+test_images/
+sample_data/
+test_data/
+mock_data/
+demo_images/
+*.test
+test_results/
+
+# 문서 빌드
+docs/_build/
+docs/build/
+*.pdf
+*.docx
+site/
+
+# 배포 파일
 *.exe
 *.app
 *.dmg
+*.msi
+*.deb
+*.rpm
+build_output/
+release/
+packaging/
 
 # 압축 파일
 *.zip
 *.tar.gz
+*.tar.bz2
 *.rar
+*.7z
+archives/
 
-# 문서 생성 파일
-docs/_build/
-*.pdf
+# OS 파일
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+*~
+.fuse_hidden*
+.directory
+.Trash-*
 
-# 캐시 및 로그
-logs/
-cache/
-*.cache
+# 성능 분석 결과
+profile_results/
+benchmark_data/
+performance_logs/
+*.prof
+*.profile
 
-# Jupyter Notebook
+# Jupyter
 .ipynb_checkpoints/
 *.ipynb
+*-checkpoint.ipynb
 
 # 백업 파일
 *.bak
 *.backup
-*~
+*.old
+*.orig
+*_backup
+backup_*/
 
-# macOS 특화
-.AppleDouble
-.LSOverride
+# 앱별 설정
+app_settings.json
+user_preferences.json
+fashion_temp/
+temp_classifications/
+temp_coordinates/
+training_checkpoints/
+model_states/
+training_logs/
+fashion_cache/
+recommendation_cache/
+image_cache/
 
-# Windows 특화
-Desktop.ini
-$RECYCLE.BIN/
-
-# 프로파일링 결과 (용량이 클 수 있음)
-profile_results/
-benchmark_data/
+# 기타
+.editorconfig
+network_logs/
+connection_logs/
