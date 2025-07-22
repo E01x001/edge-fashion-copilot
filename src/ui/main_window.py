@@ -4,6 +4,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPalette, QColor, QIcon, QPixmap
 import os
+from src.ui.outfit_result_widget import OutfitResultWidget
 
 # === 테마 색상 정의 ===
 # 다크모드(현재)
@@ -496,7 +497,7 @@ class MainWindow(QMainWindow):
         left_layout.addWidget(self.splitter)
         self.left_frame.setLayout(left_layout)
 
-        # 중간 패널
+        # 중간 패널: OutfitResultWidget으로 교체
         self.center_frame = QFrame()
         self.center_frame.setFrameShape(QFrame.StyledPanel)
         self.center_frame.setMinimumWidth(0)
@@ -504,18 +505,10 @@ class MainWindow(QMainWindow):
         center_layout2.setAlignment(Qt.AlignTop)
         center_layout2.setContentsMargins(40, 40, 40, 40)
         center_layout2.setSpacing(32)
-        self.top_label = QLabel()
-        self.top_label.setAlignment(Qt.AlignCenter)
-        self.top_label.setFixedSize(220, 220)
-        center_layout2.addWidget(self.top_label)
-        self.bottom_label = QLabel()
-        self.bottom_label.setAlignment(Qt.AlignCenter)
-        self.bottom_label.setFixedSize(220, 220)
-        center_layout2.addWidget(self.bottom_label)
-        self.shoes_label = QLabel()
-        self.shoes_label.setAlignment(Qt.AlignCenter)
-        self.shoes_label.setFixedSize(220, 220)
-        center_layout2.addWidget(self.shoes_label)
+
+        # OutfitResultWidget 생성 및 배치
+        self.outfit_result_widget = OutfitResultWidget(self.center_frame)
+        center_layout2.addWidget(self.outfit_result_widget)
         self.center_frame.setLayout(center_layout2)
 
         # 중앙 결과 프레임 (배경만)
@@ -796,3 +789,18 @@ class MainWindow(QMainWindow):
 
     def change_temperature(self, delta):
         self.temp_spin.setValue(self.temp_spin.value() + delta)
+
+    def on_recommend_clicked(self):
+        # 예시: 이미지 경로를 실제 추천 결과에 맞게 전달
+        # 실제 구현에서는 추천 알고리즘 결과를 받아서 경로를 전달해야 함
+        top_path = "./images/top.png"
+        bottom_path = "./images/bottom.png"
+        outer_path = "./images/outer.png"
+        shoes_path = "./images/shoes.png"
+        accessory_path = "./images/belt.png"
+        # 필수 이미지가 없으면 표시하지 않음
+        if not (os.path.exists(top_path) and os.path.exists(bottom_path)):
+            return
+        self.outfit_result_widget.show_outfit_result(
+            top_path, bottom_path, outer_path, shoes_path, accessory_path
+        )
